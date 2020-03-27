@@ -6,7 +6,6 @@ import pro.antonshu.phonebook.entities.Phone;
 import pro.antonshu.phonebook.repositories.PhoneRepository;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,13 +28,7 @@ public class PhoneService {
 
     @Transactional
     public void clearPersonPhoneList(List<Phone> phones) {
-        List<Phone> list = new ArrayList<>();
-        phones.forEach(phone -> {
-            if (phoneRepository.existsByNumber(phone.getNumber())) {
-                list.add(phoneRepository.findOneByNumber(phone.getNumber()));
-            }
-        });
-        list.forEach(phone -> deletePhone(phone));
+        phones.forEach(phone -> deletePhone(phone));
     }
 
     @Transactional
